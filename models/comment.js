@@ -1,26 +1,22 @@
 const {Schema,model} = require('mongoose');
 
-const blogSchema = new Schema({
-    title:{
+const commentScheme = new Schema({
+    content:{
         type: String,
         required: true,
     },
-    body:{
-        type: String,
-        required: true,
-    },
-    coverImageURL:{
-        type: String,
-        required: false,
+    blogID:{
+        type: Schema.Types.ObjectId,
+        ref: 'blog',
     },
     createdBy:{
         type: Schema.Types.ObjectId,
         ref: 'user',
 
-    }
+    },
 },{timestamps:true}
 );
 
-const Blog = model('blogs',blogSchema);
+const Comment = model('comment',commentScheme);
 
-module.exports = Blog;
+module.exports = Comment;
